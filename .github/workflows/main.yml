@@ -1,32 +1,5 @@
-name: Unpack ZENQIVO Project
-
-on:
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-jobs:
-  unpack:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Extract project
+      - name: Extract analyze cleanup hotfix
         run: |
-          unzip -q ZENQIVO_Player_0.14.0_GitHub_ready.zip -d /tmp/zenqivo
-          rm -rf /tmp/zenqivo/zenqivo_player/.github
-          rsync -a /tmp/zenqivo/zenqivo_player/ ./
-          rm -f ZENQIVO_Player_0.14.0_GitHub_ready.zip
-
-      - name: Commit extracted project
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Extract complete ZENQIVO Player project"
-          git push
+          unzip -q ZENQIVO_analyze_cleanup_hotfix.zip -d /tmp/zenqivo-hotfix
+          rsync -a /tmp/zenqivo-hotfix/zenqivo_player/ ./
+          rm -f ZENQIVO_analyze_cleanup_hotfix.zip
