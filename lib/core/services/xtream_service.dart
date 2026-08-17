@@ -225,7 +225,7 @@ class XtreamService {
         )
         .timeout(const Duration(seconds: 20));
     if (response.statusCode < 200 || response.statusCode >= 300) {
-      throw Exception('xtream_$action_failed_${response.statusCode}');
+      throw Exception('xtream_${action}_failed_${response.statusCode}');
     }
     final decoded = jsonDecode(utf8.decode(response.bodyBytes, allowMalformed: true));
     if (decoded is! List) return const [];
