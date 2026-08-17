@@ -212,13 +212,13 @@ class PlaylistCatalogService {
 
       if (extinf == null || line.isEmpty || line.startsWith('#')) continue;
 
-      final title = extinf!.contains(',')
-          ? extinf!.split(',').last.trim()
+      final title = extinf.contains(',')
+          ? extinf.split(',').last.trim()
           : 'Media';
 
       final attrs = <String, String>{};
       for (final match
-          in RegExp(r'''([\w-]+)=["']([^"']*)["']''').allMatches(extinf!)) {
+          in RegExp(r'''([\w-]+)=["']([^"']*)["']''').allMatches(extinf)) {
         attrs[match.group(1)!.toLowerCase()] = match.group(2)!;
       }
 

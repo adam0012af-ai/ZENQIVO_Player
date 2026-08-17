@@ -9,7 +9,6 @@ import '../../core/services/player_preferences_service.dart';
 import '../../core/theme/zenqivo_theme.dart';
 import '../movie/movie_details_screen.dart';
 import '../player/player_screen.dart';
-import '../search/search_screen.dart';
 import '../series/series_details_screen.dart';
 
 class LibraryScreen extends StatefulWidget {
@@ -73,24 +72,6 @@ class _LibraryScreenState extends State<LibraryScreen> {
     return groups;
   }
 
-  EpgProgram? _now(MediaItem item) {
-    final id = item.tvgId;
-    if (id == null) return null;
-    for (final p in widget.epg[id] ?? const <EpgProgram>[]) {
-      if (p.isNow) return p;
-    }
-    return null;
-  }
-
-  EpgProgram? _next(MediaItem item) {
-    final id = item.tvgId;
-    if (id == null) return null;
-    final now = DateTime.now();
-    for (final p in widget.epg[id] ?? const <EpgProgram>[]) {
-      if (p.start.isAfter(now)) return p;
-    }
-    return null;
-  }
 
   Future<void> _open(MediaItem item) async {
     final settings = await _prefs.load();
@@ -495,40 +476,3 @@ class _PosterCardState extends State<_PosterCard> {
       };
 }
 
-class _Logo extends StatelessWidget {
-  const _Logo({required this.item});
-  final MediaItem item;
-
-  @override
-  Widget build(BuildContext context) {
-    final url = item.logoUrl;
-    return Container(
-      width: 52,
-      height: 52,
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: ZenqivoColors.surfaceRaised,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: url == null || url.isEmpty
-          ? Icon(
-              item.kind == MediaKind.live
-                  ? Icons.live_tv_rounded
-                  : item.kind == MediaKind.movie
-                      ? Icons.movie_rounded
-                      : Icons.video_library_rounded,
-              color: ZenqivoColors.gold,
-            )
-          : Image.network(
-              url,
-              fit: BoxFit.contain,
-              errorBuilder: (_, __, ___) => const Icon(Icons.play_circle_outline_rounded, color: ZenqivoColors.gold),
-            ),
-    );
-  }
-}
-
-
-extension _FirstOrNull<T> on Iterable<T> {
-  T? get firstOrNull => isEmpty ? null : first;
-}
