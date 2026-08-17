@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZENQIVO Admin</title>
+<style>
+:root{--bg:#080808;--card:#121212;--gold:#d4af37;--gold2:#f2d77a;--muted:#aaa;--line:#2a2a2a;--danger:#ff7373;--ok:#84e79c}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 50% 0,#241c08 0,#080808 38%);color:#fff;font-family:Arial,sans-serif}
+.wrap{max-width:1180px;margin:auto;padding:28px}
+.brand{font-size:34px;letter-spacing:5px;color:var(--gold);font-weight:900}.sub{color:var(--muted);margin:6px 0 22px}
+.card{background:rgba(18,18,18,.96);border:1px solid #3a3012;border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 15px 40px #0008}
+h2{margin:0 0 14px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:7px}
+input,select,button{border-radius:10px;border:1px solid var(--line);padding:12px;background:#0c0c0c;color:white}
+input,select{min-width:180px}button{cursor:pointer;background:linear-gradient(135deg,#b88b16,#f0cf64);color:#111;font-weight:800}
+button.secondary{background:#191919;color:#eee}.danger{background:#351010;color:#ffb1b1;border-color:#6b2525}
+.device,.playlist{padding:14px;border-top:1px solid var(--line)}.device:first-child,.playlist:first-child{border-top:0}
+code{color:var(--gold2)}.ok{color:var(--ok)}.pending{color:#ffd277}.msg{min-height:24px;color:var(--gold2);padding-top:8px}
+.small{font-size:13px;color:var(--muted);line-height:1.6}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#25200e;font-size:12px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.wrap{padding:16px}}
+</style>
+</head>
+<body><div class="wrap">
+<div class="brand">ZENQIVO</div>
+<div class="sub">Device & Playlist Control · لوحة الإدارة</div>
+
+<div class="card">
+  <h2>اتصال الإدارة</h2>
+  <div class="row">
+    <input id="token" type="password" autocomplete="off" placeholder="Admin Token">
+    <button onclick="refreshAll()">تحديث البيانات</button>
+  </div>
+  <div class="small">رمز الإدارة لا يتم حفظه داخل الصفحة أو المشروع.</div>
+  <div id="msg" class="msg"></div>
+</div>
+
+<div class="card">
+  <h2>إضافة Playlist</h2>
+  <div class="row">
+    <input id="pd" placeholder="Device ID">
+    <input id="pn" placeholder="اسم القائمة">
+    <select id="pt"><option value="m3u">M3U</option><option value="xtream">Xtream-compatible</option></select>
+    <input id="pu" style="min-width:330px" placeholder="Source URL">
+    <input id="pxu" placeholder="Username (اختياري)">
+    <input id="pxp" type="password" placeholder="Password (اختياري)">
+    <button onclick="addPlaylist()">إضافة</button>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card"><h2>الأجهزة</h2><div id="devices">لم يتم التحميل بعد.</div></div>
+  <div class="card"><h2>القوائم</h2><div id="playlists">لم يتم التحميل بعد.</div></div>
+</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const headers=()=>({'content-type':'application/json','x-admin-token':$('token').value});
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function note(t){$('msg').textContent=t}
+async function call(url,opts={}){
+  const r=await fetch(url,{...opts,headers:{...headers(),...(opts.headers||{})}});
+  let j={}; try{j=await r.json()}catch{}
+  if(!r.ok)throw new Error(j.error||`HTTP_${r.status}`);
+  return j;
+}
+async function refreshAll(){await Promise.all([loadDevices(),loadPlaylists()])}
+async function loadDevices(){
+  try{
+    const j=await call('/admin/api/devices');
+    $('devices').innerHTML=j.devices.map(d=>`<div class="device">
+      <b>${esc(d.deviceId)}</b> · <span class="${d.active?'ok':'pending'}">${d.active?'مفعّل':'غير مفعّل'}</span>
+      <br><span class="small">${esc(d.platform||'')} ${esc(d.appVersion||'')}<br>انتهاء: ${esc(d.activatedUntil||'—')}</span>
+      <div class="row">
+        <button onclick="activate('${encodeURIComponent(d.deviceId)}',30)">30 يوم</button>
+        <button onclick="activate('${encodeURIComponent(d.deviceId)}',365)">سنة</button>
+        <button class="secondary" onclick="choose('${encodeURIComponent(d.deviceId)}')">اختيار</button>
+        <button class="danger" onclick="deactivate('${encodeURIComponent(d.deviceId)}')">إلغاء</button>
+        <button class="danger" onclick="removeDevice('${encodeURIComponent(d.deviceId)}')">حذف</button>
+      </div>
+    </div>`).join('')||'<span class="small">لا توجد أجهزة.</span>';
+  }catch(e){note(e.message)}
+}
+function choose(encoded){$('pd').value=decodeURIComponent(encoded);loadPlaylists($('pd').value)}
+async function activate(encoded,days){try{await call('/admin/api/activate',{method:'POST',body:JSON.stringify({deviceId:decodeURIComponent(encoded),days})});note('تم تحديث التفعيل');await loadDevices()}catch(e){note(e.message)}}
+async function deactivate(encoded){try{await call('/admin/api/deactivate',{method:'POST',body:JSON.stringify({deviceId:decodeURIComponent(encoded)})});note('تم إلغاء التفعيل');await loadDevices()}catch(e){note(e.message)}}
+async function removeDevice(encoded){if(!confirm('حذف الجهاز وكل القوائم المرتبطة به؟'))return;try{await call('/admin/api/devices/'+encoded,{method:'DELETE'});note('تم حذف الجهاز');await refreshAll()}catch(e){note(e.message)}}
+async function addPlaylist(){
+  try{
+    await call('/admin/api/playlists',{method:'POST',body:JSON.stringify({
+      deviceId:$('pd').value.trim(),name:$('pn').value.trim(),type:$('pt').value,
+      sourceUrl:$('pu').value.trim(),username:$('pxu').value.trim()||null,password:$('pxp').value||null
+    })});
+    $('pxp').value=''; note('تمت إضافة القائمة'); await loadPlaylists($('pd').value.trim());
+  }catch(e){note(e.message)}
+}
+async function loadPlaylists(deviceId=''){
+  try{
+    const q=deviceId?'?deviceId='+encodeURIComponent(deviceId):'';
+    const j=await call('/admin/api/playlists'+q);
+    $('playlists').innerHTML=j.playlists.map(p=>`<div class="playlist">
+      <b>${esc(p.name)}</b> <span class="badge">${esc(p.type)}</span>
+      <br><span class="small">${esc(p.device_id)}<br>${esc(p.source_url)}<br>${p.enabled?'مفعلة':'متوقفة'}</span>
+      <div class="row">
+        <button class="secondary" onclick="togglePlaylist(${Number(p.id)})">${p.enabled?'إيقاف':'تشغيل'}</button>
+        <button class="danger" onclick="removePlaylist(${Number(p.id)})">حذف</button>
+      </div>
+    </div>`).join('')||'<span class="small">لا توجد قوائم.</span>';
+  }catch(e){note(e.message)}
+}
+async function togglePlaylist(id){try{await call('/admin/api/playlists/toggle/'+id,{method:'POST'});note('تم تحديث القائمة');await loadPlaylists($('pd').value.trim())}catch(e){note(e.message)}}
+async function removePlaylist(id){if(!confirm('حذف القائمة؟'))return;try{await call('/admin/api/playlists/'+id,{method:'DELETE'});note('تم حذف القائمة');await loadPlaylists($('pd').value.trim())}catch(e){note(e.message)}}
+</script>
+</body></html>

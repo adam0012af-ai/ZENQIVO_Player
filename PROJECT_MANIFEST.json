@@ -1,0 +1,323 @@
+{
+  "project": "ZENQIVO Player",
+  "version": "0.14.0+14",
+  "backendVersion": "0.14.0",
+  "fileCount": 63,
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 130,
+      "sha256": "229b7610b4e3fd5eb97797982668b5187380ba9bdb6073f34ef82def956aa0a9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5720,
+      "sha256": "ed87c432fd4c3c55a155e0e9fcd9e4777e95eefaf502ba668de9266923f93c74"
+    },
+    {
+      "path": "RELEASE_CHECKLIST.md",
+      "bytes": 2015,
+      "sha256": "ae52a0f456e451d78ffe5757c03ce5cf3fb047de6b3c6a989dbd3abc96e3d269"
+    },
+    {
+      "path": "analysis_options.yaml",
+      "bytes": 47,
+      "sha256": "fb36c56656a59818ec4f9bc2202a9733ea0bd05795c85146b16208b2fab565a2"
+    },
+    {
+      "path": "android/app/build.gradle.kts",
+      "bytes": 1860,
+      "sha256": "b8975854ae8d61ce9bef94b9fd85a1a9bf76217142eb1cc22ae5fc669318e891"
+    },
+    {
+      "path": "android/app/src/debug/AndroidManifest.xml",
+      "bytes": 138,
+      "sha256": "53c01c7b40f6e1ba705b89674fe73988706e83acc06551723a480055d947afe5"
+    },
+    {
+      "path": "android/app/src/main/AndroidManifest.xml",
+      "bytes": 2033,
+      "sha256": "267ef5892bd252a7959ab672798fcadb386eb0dd073210b0bda8777c75002fe7"
+    },
+    {
+      "path": "android/app/src/main/kotlin/com/zenqivo/player/MainActivity.kt",
+      "bytes": 120,
+      "sha256": "c6a978ab2f82ea1724d440b3cb502aa4c1cbc02ebbd40c5a82c3ac0b18b22347"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_launcher_foreground.xml",
+      "bytes": 409,
+      "sha256": "1b4c4f7b79a173a8817a3b0b107019c71f5228d1e48fbaf34f56fefcdf2570f1"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/tv_banner.xml",
+      "bytes": 400,
+      "sha256": "b71d352ee03a3dddd5348f753df5220115a80bf0fadf8d89805f5753c34ba449"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+      "bytes": 486,
+      "sha256": "4c5fb74335fe8fb4e3097260bb7603dd212efede46e339eb8fa665e38ab6f1f6"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+      "bytes": 268,
+      "sha256": "5f3b1ed2282af327c78539428c3398a99a7e9a09051c2ae2cf7aa27068201319"
+    },
+    {
+      "path": "android/app/src/main/res/values/colors.xml",
+      "bytes": 159,
+      "sha256": "d7041f17883465fcfafa0efda4aedf09cfa397bbc5ce2eb3ff0eff2d34bfa5c1"
+    },
+    {
+      "path": "android/app/src/main/res/values/ic_launcher_background.xml",
+      "bytes": 121,
+      "sha256": "f9d71602095225a9db7e008cd6038eae638c7571e6fcfa3434054bd5fbd4fef3"
+    },
+    {
+      "path": "android/app/src/main/res/values/strings.xml",
+      "bytes": 210,
+      "sha256": "ad8d8bc232016f6b3985cdda7b12afb63a8c541f1b066808edaa2300ee0573e0"
+    },
+    {
+      "path": "android/app/src/main/res/values/styles.xml",
+      "bytes": 527,
+      "sha256": "7cebb2a027d0e5ff8f35d3c2e8f138053dd868c82261586a4ed76ddd683f0769"
+    },
+    {
+      "path": "android/build.gradle.kts",
+      "bytes": 515,
+      "sha256": "e704c38144ab59a5b51375447918d81d386d9ff49afd6c648b233bca8d759ed2"
+    },
+    {
+      "path": "android/gradle/wrapper/gradle-wrapper.properties",
+      "bytes": 203,
+      "sha256": "adfec9a4aa8571d468eff9e0e5e4218eefdd6a7870e9f3774eef865641d78ec3"
+    },
+    {
+      "path": "android/gradle.properties",
+      "bytes": 166,
+      "sha256": "66a1129145f83f52cbdc0604a3ed0fd1142e9ae99195fc6a68f223f9d37674a8"
+    },
+    {
+      "path": "android/key.properties.example",
+      "bytes": 111,
+      "sha256": "5a97c4dd55a76f010ea21962d1013a9d745d7270b9c198dfb246bbf2eefee495"
+    },
+    {
+      "path": "android/settings.gradle.kts",
+      "bytes": 738,
+      "sha256": "6ab6bef55fd22d9f7610d2b0eca5f4694127d20cbc729b602067977888e209f1"
+    },
+    {
+      "path": "assets/branding/identity_reference.png",
+      "bytes": 1633120,
+      "sha256": "b16809360b1203e0ca35f331537dedee133121bbd0459d00455d6558b30a9fe8"
+    },
+    {
+      "path": "backend/.env.example",
+      "bytes": 125,
+      "sha256": "9a44abf8ae893975d02c74de8a138bbcce37575b86daab226fa3e075ad960f30"
+    },
+    {
+      "path": "backend/deploy/nginx.conf.example",
+      "bytes": 672,
+      "sha256": "f843c54b571d7c281be85fa0dcd0c3889dcf11749fe2f26a871068aa51ea01d4"
+    },
+    {
+      "path": "backend/deploy/zenqivo.service.example",
+      "bytes": 430,
+      "sha256": "8628955ae90ac787f43b71e9c454425582f1ca87b13496f9365ec894d9bb9d3e"
+    },
+    {
+      "path": "backend/package.json",
+      "bytes": 268,
+      "sha256": "fb05fa26c133be0437d6a119e6ab4e7374de12998aba1134152504b77b5fe106"
+    },
+    {
+      "path": "backend/public/admin.html",
+      "bytes": 7334,
+      "sha256": "e41a4f480833750e9c9cd441cb39b22dd6fc7f29890570eec06fef3cb89389ee"
+    },
+    {
+      "path": "backend/server.js",
+      "bytes": 13120,
+      "sha256": "6f5e90c00c612e5c48f80b16036639f3bbbb0920165e61c2ea1f4862c39164a9"
+    },
+    {
+      "path": "backend/test_backend.mjs",
+      "bytes": 3833,
+      "sha256": "13bef3eac59d3016cd5965098545c672ecbf804c4a2182b1c2b79c496890afdd"
+    },
+    {
+      "path": "lib/app.dart",
+      "bytes": 1140,
+      "sha256": "2adaa485291c0355b4c1cfd03671382ad59f0bdbd5cbf764a9dd706bf793af11"
+    },
+    {
+      "path": "lib/core/api/zenqivo_api.dart",
+      "bytes": 3345,
+      "sha256": "a2604d13e63c950164c4187301d40e9cdb43e1ff8efc0ab5c3e86a4133be0d2d"
+    },
+    {
+      "path": "lib/core/config/zenqivo_config.dart",
+      "bytes": 329,
+      "sha256": "48f1c6e6a2b94ad82bb7f045e4f548dc1bb85cb55ce3897d2a163bf02cf18c6a"
+    },
+    {
+      "path": "lib/core/localization/app_locale_controller.dart",
+      "bytes": 875,
+      "sha256": "fcaa510bddb05a43e7d8907c04ebaa14dadf7006dc9356ed7c93cacf737942cf"
+    },
+    {
+      "path": "lib/core/localization/zenqivo_strings.dart",
+      "bytes": 1371,
+      "sha256": "66c178633f1fa88132e0c343c065609a0f1734093224fb0c78c99a45fb04b5d2"
+    },
+    {
+      "path": "lib/core/models/epg_program.dart",
+      "bytes": 630,
+      "sha256": "5148035437194a1bc885bf0d87d4daf2c5869b09abb21ee540f0626ffb2e110a"
+    },
+    {
+      "path": "lib/core/models/media_item.dart",
+      "bytes": 888,
+      "sha256": "9798f963b2b71443a98e249ea892d8b149e20a2bdf4cb887cd600e70e428cdd9"
+    },
+    {
+      "path": "lib/core/models/playlist.dart",
+      "bytes": 957,
+      "sha256": "8887b10708bc7989fa02cbafeda0d990a1c3c7fe524bb6669bb27cc7f577d7a5"
+    },
+    {
+      "path": "lib/core/models/profile.dart",
+      "bytes": 782,
+      "sha256": "1255e44174ba7ed7aea3b83aa83d87d88c9ff69106f6e3547ef5a1d6cb78b5cb"
+    },
+    {
+      "path": "lib/core/models/series_episode.dart",
+      "bytes": 420,
+      "sha256": "d12d1ff946f4e684c83f57f26c8da697ae30e1163a9677e310540e28165cc7e4"
+    },
+    {
+      "path": "lib/core/services/device_identity_service.dart",
+      "bytes": 1190,
+      "sha256": "d30de081ba79dfddd76b0c1eb7211863d4eee26e170191ceb4cd8e351dc85886"
+    },
+    {
+      "path": "lib/core/services/epg_service.dart",
+      "bytes": 5969,
+      "sha256": "d0d27ea351ae3dfb10a4ae3d1dd907cc779af1a37994bfcf03380e641b6785f1"
+    },
+    {
+      "path": "lib/core/services/player_preferences_service.dart",
+      "bytes": 4523,
+      "sha256": "f2a0aa943d0bd33718702da41e63ddc5046703148769f8772244a04ae9d81711"
+    },
+    {
+      "path": "lib/core/services/playlist_catalog_service.dart",
+      "bytes": 7281,
+      "sha256": "202149901dc78ac12ef58811a31e02f295b9e1b45b0b4883a7ba3d19c47a2719"
+    },
+    {
+      "path": "lib/core/services/profile_service.dart",
+      "bytes": 3099,
+      "sha256": "fdaad8a33d1e42dc0b72ed597b3fcf06bc27292647c5190ad21421f762f18f5c"
+    },
+    {
+      "path": "lib/core/services/xtream_service.dart",
+      "bytes": 10037,
+      "sha256": "6bedf29d4ada97dadbbf54408300121fbd163530b94ba62a7d1cc6a59b0d077b"
+    },
+    {
+      "path": "lib/core/theme/zenqivo_theme.dart",
+      "bytes": 4062,
+      "sha256": "d2b823fab21ad5ff636924d54706db117f1b6f9dab8c11fcca5805f15438c635"
+    },
+    {
+      "path": "lib/features/device/device_setup_screen.dart",
+      "bytes": 18305,
+      "sha256": "32da67cee8eb3355a655cd253b5bb13353a3b24d0cb43fb10696718e2d1b3ed2"
+    },
+    {
+      "path": "lib/features/history/history_screen.dart",
+      "bytes": 6895,
+      "sha256": "891153570769bad30fe13ea8bb638ae940e0e607133d7249d7b7fb2ef2851e13"
+    },
+    {
+      "path": "lib/features/home/home_discovery_rows.dart",
+      "bytes": 12132,
+      "sha256": "7bd3cb03ec32b7a9e32883046eedcafaf7603f2c5c605c29ddff6b10d1cd22c0"
+    },
+    {
+      "path": "lib/features/home/home_shell.dart",
+      "bytes": 13658,
+      "sha256": "71d8fc92a60ac517b5d8c9c96eee2750d0518fc320e77cedb5a5a06b865f5851"
+    },
+    {
+      "path": "lib/features/library/library_screen.dart",
+      "bytes": 16213,
+      "sha256": "fae87ee8e1eae0171ad9e0283c3ae967f7cb52ffab482f46f8c3e0b7ea5737ab"
+    },
+    {
+      "path": "lib/features/live/live_tv_screen.dart",
+      "bytes": 17608,
+      "sha256": "6619dfd0acaff0f439bbaec5d2e738742777b8c3306725f47d7dc1118534409c"
+    },
+    {
+      "path": "lib/features/movie/movie_details_screen.dart",
+      "bytes": 10688,
+      "sha256": "cc967dc36b2b54d499d906fecd167923c613bde723cd990cebd0996c73f4d239"
+    },
+    {
+      "path": "lib/features/player/player_screen.dart",
+      "bytes": 25889,
+      "sha256": "a503591d3b1bc9dd59035f5ed2615752970643090b4c35d328c0d00b4bc1e13d"
+    },
+    {
+      "path": "lib/features/profile/profile_selection_screen.dart",
+      "bytes": 17006,
+      "sha256": "52915b4115a4c0b4041d0e9ff924f59594f31146a49fd0f077305e442cebd847"
+    },
+    {
+      "path": "lib/features/search/search_screen.dart",
+      "bytes": 7214,
+      "sha256": "60463820a0a190e6ef870c9074cdcba8ad039fdce8857e76ccfd26fff3d5992c"
+    },
+    {
+      "path": "lib/features/series/series_details_screen.dart",
+      "bytes": 16839,
+      "sha256": "3fca4dfc3ec833e63a4b7e84dfd730c44f29efb400c78ff3752949c3b85724d3"
+    },
+    {
+      "path": "lib/features/settings/about_screen.dart",
+      "bytes": 4943,
+      "sha256": "887fac8f839b01cfbd79e9c696557bfea72ec17c1f4e606049a0acec60d7ed53"
+    },
+    {
+      "path": "lib/features/settings/settings_screen.dart",
+      "bytes": 10845,
+      "sha256": "eecf1a153f44273224b2119b185520365b207248a97b0b1052c3a126a238a10e"
+    },
+    {
+      "path": "lib/features/splash/splash_screen.dart",
+      "bytes": 2266,
+      "sha256": "11a89917dc24dd2926a8ce46b0ed153b6c8896a862be83118fbdb28755495d6f"
+    },
+    {
+      "path": "lib/main.dart",
+      "bytes": 341,
+      "sha256": "ab8e60c74aed2369ca8c75b597db097dedc4de1d86d30b6c700f3e8d7e611a6f"
+    },
+    {
+      "path": "pubspec.yaml",
+      "bytes": 517,
+      "sha256": "d93a8454b91b01cab6c8faf437f6d95f6894409610e50b7ca6d0908df1af054b"
+    },
+    {
+      "path": "scripts/qa.sh",
+      "bytes": 1230,
+      "sha256": "e4daa7b72ed7e7ae65679377bd292f208b3c09c4cfa9af5d92762b8bfa078f02"
+    }
+  ]
+}

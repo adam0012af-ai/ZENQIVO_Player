@@ -1,0 +1,7 @@
+backend/zenqivo.sqlite
+backend/zenqivo.sqlite-shm
+backend/zenqivo.sqlite-wal
+android/key.properties
+*.jks
+*.keystore
+backend/.env

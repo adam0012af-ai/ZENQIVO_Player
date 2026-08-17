@@ -1,0 +1,13 @@
+{
+  "name": "zenqivo-backend",
+  "version": "0.14.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-sqlite server.js",
+    "test": "node --experimental-sqlite test_backend.mjs"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}

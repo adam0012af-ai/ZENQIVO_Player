@@ -1,0 +1,20 @@
+[Unit]
+Description=ZENQIVO Backend
+After=network.target
+
+[Service]
+Type=simple
+User=zenqivo
+WorkingDirectory=/opt/zenqivo/backend
+EnvironmentFile=/opt/zenqivo/backend/.env
+ExecStart=/usr/bin/node --experimental-sqlite /opt/zenqivo/backend/server.js
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/zenqivo/backend
+
+[Install]
+WantedBy=multi-user.target
