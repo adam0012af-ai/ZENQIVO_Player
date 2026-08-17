@@ -1,5 +1,35 @@
+name: Unpack ZENQIVO Project
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Extract analyze cleanup hotfix
         run: |
           unzip -q ZENQIVO_analyze_cleanup_hotfix.zip -d /tmp/zenqivo-hotfix
           rsync -a /tmp/zenqivo-hotfix/zenqivo_player/ ./
           rm -f ZENQIVO_analyze_cleanup_hotfix.zip
+
+      - name: Commit hotfix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Apply ZENQIVO analyze cleanup hotfix"
+          git push
