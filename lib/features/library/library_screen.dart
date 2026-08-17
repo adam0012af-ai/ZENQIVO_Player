@@ -146,9 +146,9 @@ class _LibraryScreenState extends State<LibraryScreen> {
               width: 260,
               child: TextField(
                 onChanged: (v) => setState(() => _query = v),
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   isDense: true,
-                  prefixIcon: Icon(Icons.search_rounded),
+                  prefixIcon: const Icon(Icons.search_rounded),
                   hintText: ZText.t('بحث داخل القسم', 'Search this section'),
                 ),
               ),
@@ -229,6 +229,73 @@ class _LibraryScreenState extends State<LibraryScreen> {
   }
 }
 
+
+Future<bool> _askPin(
+  BuildContext context,
+  PlayerPreferencesService prefs,
+) async {
+  final controller = TextEditingController();
+  String? error;
+
+  final result = await showDialog<bool>(
+    context: context,
+    barrierDismissible: false,
+    builder: (context) => StatefulBuilder(
+      builder: (context, setDialogState) => AlertDialog(
+        title: Text(ZText.t('محتوى مقفول', 'Locked Content')),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              ZText.t(
+                'أدخل رمز الرقابة الأبوية للمتابعة.',
+                'Enter the parental PIN to continue.',
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: controller,
+              autofocus: true,
+              obscureText: true,
+              keyboardType: TextInputType.number,
+              maxLength: 6,
+            ),
+            if (error != null)
+              Text(
+                error!,
+                style: const TextStyle(color: Colors.redAccent),
+              ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(ZText.t('إلغاء', 'Cancel')),
+          ),
+          FilledButton(
+            onPressed: () async {
+              final ok = await prefs.verifyPin(controller.text);
+              if (ok && context.mounted) {
+                Navigator.pop(context, true);
+              } else {
+                setDialogState(
+                  () => error = ZText.t(
+                    'الرمز غير صحيح',
+                    'Incorrect PIN',
+                  ),
+                );
+              }
+            },
+            child: Text(ZText.t('فتح', 'Unlock')),
+          ),
+        ],
+      ),
+    ),
+  );
+
+  return result ?? false;
+}
+
 class _PosterCard extends StatefulWidget {
   const _PosterCard({
     required this.item,
@@ -264,7 +331,11 @@ class _PosterCardState extends State<_PosterCard> {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 130),
-        transform: Matrix4.identity()..scale(_focused ? 1.025 : 1.0),
+        transform: Matrix4.diagonal3Values(
+          _focused ? 1.025 : 1.0,
+          _focused ? 1.025 : 1.0,
+          1.0,
+        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18),
           border: Border.all(

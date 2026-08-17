@@ -573,8 +573,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
               ),
               const Spacer(),
               if (_item.kind == MediaKind.live && widget.queue.length > 1)
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 14),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 14),
                   child: Text(
                     ZText.t('↑ ↓ لتغيير القناة سريعًا', '↑ ↓ to change channels quickly'),
                     style: TextStyle(color: Colors.white60),

@@ -93,8 +93,8 @@ class _SearchScreenState extends State<SearchScreen> {
             controller: controller,
             autofocus: true,
             onChanged: (v) => setState(() => query = v),
-            decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.search_rounded),
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.search_rounded),
               hintText: ZText.t('ابحث عن قناة، فيلم، مسلسل أو برنامج حالي...', 'Search channels, movies, series, or current programs...'),
             ),
           ),

@@ -90,8 +90,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                     end: Alignment.centerLeft,
                     colors: [
                       ZenqivoColors.background,
-                      ZenqivoColors.background.withOpacity(.94),
-                      ZenqivoColors.background.withOpacity(.76),
+                      ZenqivoColors.background.withValues(alpha: .94),
+                      ZenqivoColors.background.withValues(alpha: .76),
                     ],
                   ),
                 ),
@@ -259,7 +259,7 @@ class _MovieInfo extends StatelessWidget {
                   text: movie.containerExtension!.toUpperCase(),
                 ),
               if (movie.isAdult)
-                const _MetaChip(
+                _MetaChip(
                   icon: Icons.lock_rounded,
                   text: ZText.t('مقيد', 'Restricted'),
                 ),

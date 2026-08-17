@@ -162,9 +162,9 @@ class _LiveTvScreenState extends State<LiveTvScreen> {
                     _query = v;
                     _selected = 0;
                   }),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     isDense: true,
-                    prefixIcon: Icon(Icons.search_rounded),
+                    prefixIcon: const Icon(Icons.search_rounded),
                     hintText: ZText.t('بحث عن قناة', 'Search channels'),
                   ),
                 ),
@@ -202,7 +202,7 @@ class _LiveTvScreenState extends State<LiveTvScreen> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: selected == null
-                      ? const Center(
+                      ? Center(
                           child: Text(
                             ZText.t('لا توجد قنوات.', 'No channels available.'),
                             style: TextStyle(color: ZenqivoColors.muted),
@@ -388,8 +388,8 @@ class _GuidePanel extends StatelessWidget {
             ),
           ]),
         ),
-        const Padding(
-          padding: EdgeInsets.fromLTRB(18, 18, 18, 8),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(18, 18, 18, 8),
           child: Text(
             ZText.t('دليل البرامج', 'Program Guide'),
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
@@ -397,7 +397,7 @@ class _GuidePanel extends StatelessWidget {
         ),
         Expanded(
           child: programs.isEmpty
-              ? const Center(
+              ? Center(
                   child: Text(
                     ZText.t('لا تتوفر بيانات EPG لهذه القناة.', 'No EPG data is available for this channel.'),
                     style: TextStyle(color: ZenqivoColors.muted),

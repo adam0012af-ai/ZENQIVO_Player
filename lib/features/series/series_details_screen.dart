@@ -98,7 +98,7 @@ class _SeriesDetailsScreenState extends State<SeriesDetailsScreen> {
               );
             }
             if (snapshot.hasError) {
-              return const Center(
+              return Center(
                 child: Text(
                   ZText.t('تعذر تحميل المواسم والحلقات.', 'Unable to load seasons and episodes.'),
                   style: TextStyle(color: ZenqivoColors.muted),
@@ -108,7 +108,7 @@ class _SeriesDetailsScreenState extends State<SeriesDetailsScreen> {
 
             final episodes = snapshot.data ?? const [];
             if (episodes.isEmpty) {
-              return const Center(
+              return Center(
                 child: Text(
                   ZText.t('لا توجد حلقات متاحة.', 'No episodes available.'),
                   style: TextStyle(color: ZenqivoColors.muted),
